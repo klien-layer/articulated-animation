@@ -9,6 +9,8 @@ In no event will Snap Inc. be liable for any damages or losses of any kind arisi
 
 import sys
 import yaml
+from yaml import Loader
+
 from argparse import ArgumentParser
 from tqdm import tqdm
 
@@ -33,7 +35,7 @@ if sys.version_info[0] < 3:
 
 def load_checkpoints(config_path, checkpoint_path, cpu=False):
     with open(config_path) as f:
-        config = yaml.load(f)
+        config = yaml.load(f, Loader)
 
     generator = Generator(num_regions=config['model_params']['num_regions'],
                           num_channels=config['model_params']['num_channels'],
